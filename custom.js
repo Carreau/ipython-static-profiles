@@ -29,7 +29,7 @@ $([IPython.events]).on('notebook_loaded.Notebook', function(){
     // Full path if extensions are only one file
 
     // Add a button to disable auto-output scrolling for current session
-    //load_ext('noscroll.js');
+    load_ext('noscroll.js');
 
     //load_ext('clean_start.js')
     //load_ext('toggle_all_line_number.js')

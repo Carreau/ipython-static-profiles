@@ -14,7 +14,7 @@ IPython.toolbar.add_buttons_group(
     [
        {
             'label'   : 'No auto-output scrolling (Definitive until restart/reload of the page)',
-            'icon'    : 'ui-icon-circlesmall-close',
+            'icon'    : 'icon-ellipsis-vertical',
             'callback': function() {
                 IPython.OutputArea.prototype._should_scroll = function (){return false}
             }

@@ -18,12 +18,13 @@ var bind_remote = function(selector){
                     return false
                 }
             )
-            .focusin(function(){$('#qwerty').button('option','label','Slide Mode Enabled')})
-            .focusout(function(){$('#qwerty').button('option','label','Enable Slide Mode')})
+            .focusin(function(){$('#qwerty').text('Slide Mode Enabled')})
+            .focusout(function(){$('#qwerty').text('Enable Slide Mode')})
 
-     var keyboard_control_button = $('<div/>')
+     var keyboard_control_button = $('<button/>')
             .attr('id','qwerty')
-            .button({label:'slide control'})
+            .addClass('btn')
+            .text('slide control')
             .attr('style','float:right')
             .click(
                 function(){ invisible_input.focus() }
@@ -87,8 +88,8 @@ IPython = (function(IPython) {
     Presentation.prototype.create_toolbar = function(){
         var that = this
 
-        this.progression = $('<button/>').button({label:that.eta()})
-        var grp = $('<span/>').addClass('ui-button-set');
+        this.progression = $('<button/>').addClass('btn').text(that.eta())
+        var grp = $('<div/>').addClass('btn-group');
 
 
         var pt = $('<div/>').attr('id','toolbar_present');
@@ -100,15 +101,15 @@ IPython = (function(IPython) {
         var ptoolbar = new IPython.ToolBar('#toolbar_present')
 
 
-        ptoolbar.add_buttons_group([{label:'Pause', icon:'ui-icon-pause', callback:function(){that.pause()}}])
-        ptoolbar.add_buttons_group([{label:'Stop' , icon:'ui-icon-stop' , callback:function(){that.stop() }}])
+        ptoolbar.add_buttons_group([{label:'Pause', icon:'icon-pause', callback:function(){that.pause()}}])
+        ptoolbar.add_buttons_group([{label:'Stop' , icon:'icon-stop' , callback:function(){that.stop() }}])
 
         ptoolbar.add_buttons_group([
-                 {label:'Prev Slide', icon:'ui-icon-seek-prev', callback:function(){that.prev_group()}},
-                 {label:'Next Slide', icon:'ui-icon-seek-next', callback:function(){that.next_group()}},
+                 {label:'Prev Slide', icon:'icon-backward', callback:function(){that.prev_group()}},
+                 {label:'Next Slide', icon:'icon-forward', callback:function(){that.next_group()}},
                                 ])
         ptoolbar.add_buttons_group([
-                 {label:'Next', icon:'ui-icon-play', callback:function(){that.next()}}
+                 {label:'Next', icon:'icon-play', callback:function(){that.next()}}
                  ])
 
         bind_remote('#toolbar_present')
@@ -192,8 +193,9 @@ IPython = (function(IPython) {
             }
         }
         var that=this
-        if(this.progression != undefined)
-        $(this.progression).button('option','label',that.eta())
+        if(this.progression != undefined){
+            this.progression.text(that.eta())
+        }
         return this
     }
 
@@ -300,7 +302,7 @@ IPython.slideshow = new IPython.Presentation()
 IPython.toolbar.add_buttons_group([
     {
         'label'   : 'Start/Resume Slideshow',
-        'icon'    : 'ui-icon-image',
+        'icon'    : 'icon-bar-chart',
         'callback': function(){IPython.slideshow.resume()},
         'id'      : 'start_pmode'
     },
